@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
@@ -8,6 +9,8 @@ const companyRoutes = require('./routes/companyRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 
 require('dotenv').config();
+
+app.use(cors());
 
 // Middleware
 app.use(express.json());
