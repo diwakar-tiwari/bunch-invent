@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const SideMenu = () => {
   return (
@@ -8,14 +8,62 @@ const SideMenu = () => {
       <nav>
         <ul>
           <li className="mb-2">
-            <Link to="/products" className="block py-2 px-4 hover:bg-gray-700 rounded">Products</Link>
+            <Link
+              to="/products"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Products
+            </Link>
           </li>
           <li className="mb-2">
-            <Link to="/suppliers" className="block py-2 px-4 hover:bg-gray-700 rounded">Suppliers</Link>
+            <Link
+              to="/suppliers"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Suppliers
+            </Link>
           </li>
           <li className="mb-2">
-            <Link to="/customers" className="block py-2 px-4 hover:bg-gray-700 rounded">Customers</Link>
+            <Link
+              to="/customers"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Customers
+            </Link>
           </li>
+          <li className="mb-2">
+            <Link
+              to="/add-product"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Add Product
+            </Link>
+          </li>
+          <li className="mb-2">
+            <Link
+              to="/add-supplier"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Add Supplier
+            </Link>
+          </li>
+          <li className="mb-2">
+            <Link
+              to="/suppliers"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Supplier List
+            </Link>
+          </li>
+          <li className="mb-2">
+            <Link
+              to="/add-customer"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Add Customer
+            </Link>
+          </li>
+          <li className="mb-2">
+            <Link
+              to="/customers"
+              className="block py-2 px-4 hover:bg-gray-700 rounded">
+              Customer List
+            </Link>
+          </li>
+
           {/* Add more links as needed */}
         </ul>
       </nav>
