@@ -39,6 +39,33 @@ exports.addProduct = async (req, res) => {
   }
 };
 
+// Add multiple products in bulk
+exports.addProductsBulk = async (req, res) => {
+  const { products } = req.body;
+
+  // Validate input
+  if (!Array.isArray(products) || products.length === 0) {
+    return res.status(400).json({ message: 'Invalid product data' });
+  }
+
+  // Prepare bulk insert query
+  const values = products.map((product) => [
+    product.name,
+    product.description,
+    product.price,
+    product.quantity,
+  ]);
+
+  const sql = `INSERT INTO products (name, description, price, quantity) VALUES ?`;
+
+  try {
+    const [result] = await db.query(sql, [values]);
+    res.status(201).json({ message: `${result.affectedRows} products added successfully` });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // Update a product
 exports.updateProduct = async (req, res) => {
     const { id } = req.params;

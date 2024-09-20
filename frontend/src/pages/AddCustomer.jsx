@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import TextInput from '../components/TextInput';
+import { toast } from 'react-toastify';
 
 const AddCustomer = () => {
   const [name, setName] = useState('');
@@ -21,7 +22,7 @@ const AddCustomer = () => {
         email,
         address
       });
-      setSuccess('Customer added successfully!');
+      toast.success('Customer added successfully!');
       setName('');
       setEmail('');
       setPhone('');
