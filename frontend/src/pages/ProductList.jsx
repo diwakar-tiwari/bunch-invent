@@ -6,11 +6,15 @@ import Pagination from '../components/Pagination';
 import EditModal from '../components/EditModal';
 import CSVDownloader from '../components/CSVDownloader';
 import { toast } from 'react-toastify';
+import { productsAPI } from '../services/authService';
 
 const ProductList = () => {
+  console.log('hkhkhkhk');
+  
   const [products, setProducts] = useState([]);
   const [editProduct, setEditProduct] = useState(null);
 
+  
   const {
     currentItems,
     handleSearch,
@@ -23,11 +27,15 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchProducts();
+    
   }, []);
 
   const fetchProducts = async () => {
     try {
-      const response = await api.get('/products');
+      // const response = await api.get('/products');
+      const response = await productsAPI()
+      console.log(response);
+      
       setProducts(response.data);
     } catch (err) {
       toast.error('Failed to fetch products');
@@ -70,7 +78,8 @@ const ProductList = () => {
     { label: 'Price', key: 'price', sortable: true },
     { label: 'Quantity', key: 'quantity', sortable: true },
   ];
-
+ console.log('helooooooooooooo');
+ 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Product List</h1>

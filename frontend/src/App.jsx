@@ -8,26 +8,34 @@ import CustomerList from './pages/CustomerList';
 import AddProduct from './pages/AddProduct';
 import AddSupplier from './pages/AddSupplier';
 import AddCustomer from './pages/AddCustomer';
+import Register from './pages/Register'; 
+import Login from './pages/Login'; 
+import PrivateRoute from './utils/PrivateRoute'; 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          {/* Dashboard Route */}
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/add-customer" element={<AddCustomer />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/add-supplier" element={<AddSupplier />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/suppliers" element={<SupplierList />} />        
-          <Route path="/customers" element={<CustomerList />} />
-          {/* Add more routes as needed */}
-        </Routes>
-      </Layout>
-      <ToastContainer /> {/* ToastContainer for toast notifications */}
+      <ToastContainer />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Protected Routes - Wrapped with PrivateRoute */}
+        <Route element={<PrivateRoute />}>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/add-customer" element={<AddCustomer />} />
+            <Route path="/add-product" element={<AddProduct />} />
+            <Route path="/add-supplier" element={<AddSupplier />} />
+            <Route path="/products" element={<ProductList />} />
+            <Route path="/suppliers" element={<SupplierList />} />
+            <Route path="/customers" element={<CustomerList />} />
+          </Route>
+        </Route>
+      </Routes>
     </Router>
   );
 }

@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
+const authenticateToken = require('../middlewares/authenticateToken');
 
-router.get('/', productController.getProducts);
-router.post('/', productController.addProduct);
+// Protected routes
+router.get('/', authenticateToken, productController.getProducts);
+router.post('/', authenticateToken, productController.addProduct); // Protect this route if necessary
+router.post('/bulk', authenticateToken, productController.addProductsBulk); // Protect bulk upload
+router.get('/:id', authenticateToken, productController.getProductById); // Protect getting product by ID
+router.put('/:id', authenticateToken, productController.updateProduct); // Protect update
+router.delete('/:id', authenticateToken, productController.deleteProduct); // Protect delete
 
-router.post('/bulk', productController.addProductsBulk); // New bulk product upload route
-
-router.get('/:id', productController.getProductById);// Get a product by ID
-router.put('/:id', productController.updateProduct); // Update Product
-router.delete('/:id', productController.deleteProduct); // Delete Product
 module.exports = router;

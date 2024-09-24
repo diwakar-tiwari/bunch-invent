@@ -1,7 +1,8 @@
 // Dashboard.jsx
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import api from '../services/api';  // Ensure this is the axios instance
 import { toast } from 'react-toastify';
+
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -17,21 +18,28 @@ const Dashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const productResponse = await api.get('/products');
-      const customerResponse = await api.get('/customers');
-      const supplierResponse = await api.get('/suppliers');
-      
+      const [productResponse, customerResponse, supplierResponse] = await Promise.all([
+        api.get('/products'),
+        api.get('/customers'),
+        api.get('/suppliers')
+      ]);
+  
+      console.log('Product Response:', productResponse.data);
+      console.log('Customer Response:', customerResponse.data);
+      console.log('Supplier Response:', supplierResponse.data);
+  
       setStats({
         products: productResponse.data.length,
         customers: customerResponse.data.length,
         suppliers: supplierResponse.data.length,
       });
     } catch (err) {
-      setError('Failed to fetch dashboard stats');
-      toast.error('Failed to fetch dashboard stats');
+      setError(err.response?.data?.message || 'Failed to fetch dashboard stats');
+      toast.error(err.response?.data?.message || 'Failed to fetch dashboard stats');
     }
   };
-
+  
+  
   return (
     <div className="p-4">
       <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
