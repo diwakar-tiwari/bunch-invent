@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import PrivateRoute from './utils/PrivateRoute'; 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import StockManagement from './pages/StockManagement';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/products" element={<ProductList />} />
             <Route path="/suppliers" element={<SupplierList />} />
             <Route path="/customers" element={<CustomerList />} />
+            <Route path="/stock-management" element={<StockManagement />} />
           </Route>
         </Route>
       </Routes>

@@ -24,10 +24,6 @@ const Dashboard = () => {
         api.get('/suppliers')
       ]);
   
-      console.log('Product Response:', productResponse.data);
-      console.log('Customer Response:', customerResponse.data);
-      console.log('Supplier Response:', supplierResponse.data);
-  
       setStats({
         products: productResponse.data.length,
         customers: customerResponse.data.length,

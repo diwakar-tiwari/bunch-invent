@@ -13,15 +13,21 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await registerUser({ name, email, password });
+      const response = await registerUser({ name, email, password });
+      console.log("Registration Response:", response); // Check response
+  
+      localStorage.setItem("userName", response.data.user.name); // Store username in localStorage
       toast.success('Registration successful! Please log in.');
-      navigate('/login');
+      navigate('/login'); // Redirect after successful registration
     } catch (err) {
-      const errorMessage = err.response?.data?.message;
-      setError(errorMessage);
-      toast.error(errorMessage); 
+      console.log("Registration Error:", err.response); // Check the error response
+  
+      const errorMessage = err.response?.data?.message || 'Registration failed';
+      setError(errorMessage); // Show error in form
+      toast.error(errorMessage); // Show error toast
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">

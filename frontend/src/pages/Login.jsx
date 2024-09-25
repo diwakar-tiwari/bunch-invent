@@ -14,7 +14,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await loginUser({ email, password });
+      // Save JWT token and user data
       setToken(response.data.token);
+      localStorage.setItem("userName", response.data.user.name); // Store the username
       toast.success('Login successful!');
       navigate('/');
     } catch (err) {

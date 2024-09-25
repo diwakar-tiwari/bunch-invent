@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { productsAPI } from '../services/authService';
 
 const ProductList = () => {
-  console.log('hkhkhkhk');
+
   
   const [products, setProducts] = useState([]);
   const [editProduct, setEditProduct] = useState(null);
@@ -34,7 +34,7 @@ const ProductList = () => {
     try {
       // const response = await api.get('/products');
       const response = await productsAPI()
-      console.log(response);
+   
       
       setProducts(response.data);
     } catch (err) {
@@ -78,7 +78,7 @@ const ProductList = () => {
     { label: 'Price', key: 'price', sortable: true },
     { label: 'Quantity', key: 'quantity', sortable: true },
   ];
- console.log('helooooooooooooo');
+
  
   return (
     <div>

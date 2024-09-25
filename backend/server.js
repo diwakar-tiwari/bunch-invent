@@ -8,6 +8,7 @@ const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const supplierRoutes = require('./routes/supplierRoutes');
 const customerRoutes = require('./routes/customerRoutes');
+const stockRoutes = require('./routes/stockRoutes')
 
 dotenv.config();
 
@@ -20,7 +21,6 @@ app.use(express.json());
 
 // Logging middleware
 app.use((req, res, next) => {
-  console.log(`Received request: ${req.method} ${req.url}`);
   next();
 });
 
@@ -32,6 +32,8 @@ app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/suppliers', supplierRoutes);
 app.use('/api/customers', customerRoutes);
+// Stock management routes
+app.use('/api/stock', stockRoutes);
 
 // 404 Error Handling
 app.use((req, res, next) => {

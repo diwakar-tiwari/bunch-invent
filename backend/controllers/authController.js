@@ -30,12 +30,19 @@ exports.registerUser = async (req, res) => {
             [name, email, hashedPassword, role || 'staff']
         );
 
-        // Respond with success message
-        res.status(201).json({ message: 'User registered successfully', userId: result.insertId });
+        // Get the inserted user (optional, for response purposes)
+        const [newUser] = await db.execute('SELECT id, name, email, role FROM users WHERE id = ?', [result.insertId]);
+
+        // Respond with the created user's details
+        res.status(201).json({
+            message: 'User registered successfully',
+            user: newUser[0],  // Return user object with id, name, email, and role
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 // Login a user and issue a JWT
 exports.loginUser = async (req, res) => {
@@ -67,7 +74,8 @@ exports.loginUser = async (req, res) => {
             { expiresIn: jwtExpiration }
         );
 
-        res.json({ token });
+         // Send response with token and user details
+        res.json({ token, user: { name: user[0].name, email: user[0].email } });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

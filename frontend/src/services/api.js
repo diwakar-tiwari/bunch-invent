@@ -15,13 +15,9 @@ api.interceptors.request.use(
   (config) => {
     
     const token = getToken(); // Retrieve token from storage
-    console.log('Retrieved token:', token);
     
     if (token) {
       config.headers.Authorization = `Bearer ${token}`; // Attach the token to Authorization header
-      console.log('Token attached to headers:', config.headers.Authorization); // Log the token to verify
-    } else {
-      console.log('No token found');
     }
     return config;
   },

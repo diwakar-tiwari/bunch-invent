@@ -28,7 +28,6 @@ const AddCustomer = () => {
       setPhone('');
       setAddress('');
     } catch (err) {
-      console.error('Error:', err.response ? err.response.data : err.message);
       setError(err.response ? err.response.data.error : 'Failed to add customer. Please try again.');
     }
   };

@@ -2,7 +2,6 @@
 
 export const getToken = () => {
   const token = localStorage.getItem('token'); // Or sessionStorage, depending on where you're storing it
-  console.log('Token from localStorage:', token); // Add this for debugging
   return token;
   };
   
